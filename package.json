@@ -1,6 +1,6 @@
 {
   "name": "restful-api",
-  "type": "module",
+  "type": "commonjs",
   "version": "1.0.0",
   "description": "This is a RESTful API using Node.js and Express",
   "license": "ISC",

@@ -1,15 +1,14 @@
-import express from "express";
-
+const express = require("express");
 const app= new express();
 const PORT= 5100;
 
 //--- 1. Demo Data
 let users= [
-    {
-        id: 1,
-        firstName: "Anshika",
-        lastName: "Agarwal",
-        hobby: "Teaching"
+    {   
+            id: 1,
+            firstName: "Anshika",
+            lastName: "Agarwal",
+            hobby: "Teaching"
         },
         {
             id: 2,
@@ -96,10 +95,10 @@ app.post('/users', validateUser, (req, res) => {
 // PUT /users/:id - Update an existing user
 app.put('/users/:id', (req, res, next) => {
     const id = parseInt(req.params.id);
-    const userIndex = users.findIndex(u => u.id === id);
+    const userIndex = users.findIndex(u => u.id == id);
     const { firstName, lastName, hobby } = req.body;
 
-    if (!userIndex) {
+    if (userIndex == id) {
         const error = new Error(`User with ID ${id} not found.`);
         error.status = 404;
         return next(error);
@@ -124,7 +123,6 @@ app.put('/users/:id', (req, res, next) => {
     else if(hobby) {
         user.hobby = hobby;
     }
-
 
     // Update the array with the modified object (though 'user' is a reference,
     users[userIndex] = user;
